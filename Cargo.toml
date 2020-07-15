@@ -1,0 +1,11 @@
+[package]
+name = "lazy-transform-str"
+version = "0.0.0-dev"
+authors = ["Tamme Schichler <tamme@schichler.dev>"]
+edition = "2018"
+publish = false
+
+[dependencies]
+woc = { path = "../woc" }
+smartstring = "0.2.3"
+gnaw = { path = "../gnaw" }
