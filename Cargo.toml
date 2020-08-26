@@ -10,7 +10,6 @@ include = [
 	"**/*.rs",
 	"Cargo.toml",
 ]
-publish = false
 
 [dependencies]
 cervine = "0.0.2"
