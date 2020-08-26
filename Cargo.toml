@@ -1,11 +1,18 @@
 [package]
 name = "lazy-transform-str"
-version = "0.0.0-dev"
+version = "0.0.1"
 authors = ["Tamme Schichler <tamme@schichler.dev>"]
 edition = "2018"
+description = "Lazy-copying lazy-allocated scanning `str` transformations.\nThis is good e.g. for (un)escaping text, especially if individual strings are short."
+license = "MPL-2.0"
+repository = "https://github.com/Tamschi/lazy-transform-str"
+include = [
+	"**/*.rs",
+	"Cargo.toml",
+]
 publish = false
 
 [dependencies]
-woc = { path = "../woc" }
+cervine = "0.0.2"
 smartstring = "0.2.3"
-gnaw = { path = "../gnaw" }
+gnaw = "0.0.1"

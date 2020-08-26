@@ -8,13 +8,13 @@
 //!
 //! ```rust
 //! use {
+//!     cervine::Cow,
 //!     gnaw::Unshift as _,
 //!     lazy_transform_str::{Transform as _, TransformedPart},
 //!     smartstring::alias::String,
-//!     woc::Woc,
 //! };
 //!
-//! fn double_a(str: &str) -> Woc<String, str> {
+//! fn double_a(str: &str) -> Cow<String, str> {
 //!     str.transform(|rest /*: &mut &str */| {
 //!         // Consume some of the input. `rest` is never empty here.
 //!         match rest.unshift().unwrap() {
@@ -24,17 +24,17 @@
 //!     } /*: impl FnMut(…) -> … */ )
 //! }
 //!
-//! assert_eq!(double_a("abc"), Woc::Owned(String::from("aabc")));
-//! assert_eq!(double_a("bcd"), Woc::Borrowed("bcd"));
+//! assert_eq!(double_a("abc"), Cow::Owned(String::from("aabc")));
+//! assert_eq!(double_a("bcd"), Cow::Borrowed("bcd"));
 //! ```
 //!
 //! See [`escape_double_quotes`] and [`unescape_backlashed_verbatim`]'s sources for more real-world examples.
 
 #![warn(clippy::pedantic)]
 
+use cervine::Cow;
 use gnaw::Unshift as _;
 use smartstring::alias::String;
-use woc::Woc;
 
 pub enum TransformedPart {
 	Unchanged,
@@ -44,7 +44,7 @@ pub enum TransformedPart {
 pub fn transform(
 	str: &str,
 	transform_next: impl FnMut(/* rest: */ &mut &str) -> TransformedPart,
-) -> Woc<String, str> {
+) -> Cow<String, str> {
 	str.transform(transform_next)
 }
 
@@ -52,18 +52,18 @@ pub trait Transform {
 	fn transform(
 		&self,
 		transform_next: impl FnMut(&mut &str) -> TransformedPart,
-	) -> Woc<String, str>;
+	) -> Cow<String, str>;
 }
 
 impl Transform for str {
 	fn transform(
 		&self,
 		mut transform_next: impl FnMut(&mut &str) -> TransformedPart,
-	) -> Woc<String, str> {
+	) -> Cow<String, str> {
 		let mut rest = self;
 		let mut copied = loop {
 			if rest.is_empty() {
-				return Woc::Borrowed(self);
+				return Cow::Borrowed(self);
 			}
 			let unchanged_rest = rest;
 			if let TransformedPart::Changed(transformed) = transform_next(&mut rest) {
@@ -83,12 +83,12 @@ impl Transform for str {
 			}
 		}
 
-		Woc::Owned(copied)
+		Cow::Owned(copied)
 	}
 }
 
 #[must_use = "pure function"]
-pub fn escape_double_quotes(string: &str) -> Woc<String, str> {
+pub fn escape_double_quotes(string: &str) -> Cow<String, str> {
 	string.transform(|rest| match rest.unshift().unwrap() {
 		c @ '\\' | c @ '"' => {
 			let mut changed = String::from(r"\");
@@ -100,7 +100,7 @@ pub fn escape_double_quotes(string: &str) -> Woc<String, str> {
 }
 
 #[must_use = "pure function"]
-pub fn unescape_backslashed_verbatim(string: &str) -> Woc<String, str> {
+pub fn unescape_backslashed_verbatim(string: &str) -> Cow<String, str> {
 	let mut escaped = false;
 	string.transform(|rest| match rest.unshift().unwrap() {
 		'\\' if !escaped => {
