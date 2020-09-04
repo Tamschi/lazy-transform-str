@@ -28,25 +28,25 @@ cargo add lazy-transform-str
 ## Example
 
 ```rust
-//! use {
-//!     cervine::Cow,
-//!     gnaw::Unshift as _,
-//!     lazy_transform_str::{Transform as _, TransformedPart},
-//!     smartstring::alias::String,
-//! };
-//!
-//! fn double_a(str: &str) -> Cow<String, str> {
-//!     str.transform(|rest /*: &mut &str */| {
-//!         // Consume some of the input. `rest` is never empty here.
-//!         match rest.unshift().unwrap() {
-//!             'a' => TransformedPart::Changed(String::from("aa")),
-//!             _ => TransformedPart::Unchanged,
-//!         }
-//!     } /*: impl FnMut(…) -> … */ )
-//! }
-//!
-//! assert_eq!(double_a("abc"), Cow::Owned(String::from("aabc")));
-//! assert_eq!(double_a("bcd"), Cow::Borrowed("bcd"));
+use {
+    cervine::Cow,
+    gnaw::Unshift as _,
+    lazy_transform_str::{Transform as _, TransformedPart},
+    smartstring::alias::String,
+};
+
+fn double_a(str: &str) -> Cow<String, str> {
+    str.transform(|rest /*: &mut &str */| {
+        // Consume some of the input. `rest` is never empty here.
+        match rest.unshift().unwrap() {
+            'a' => TransformedPart::Changed(String::from("aa")),
+            _ => TransformedPart::Unchanged,
+        }
+    } /*: impl FnMut(…) -> … */ )
+}
+
+assert_eq!(double_a("abc"), Cow::Owned(String::from("aabc")));
+assert_eq!(double_a("bcd"), Cow::Borrowed("bcd"));
 ```
 
 ## License
