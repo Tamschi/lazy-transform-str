@@ -6,7 +6,7 @@
 
 ![Rust 1.46.0](https://img.shields.io/static/v1?logo=Rust&label=&message=1.46.0&color=grey)
 [![Build Status](https://travis-ci.com/Tamschi/lazy-transform-str.svg?branch=unstable)](https://travis-ci.com/Tamschi/lazy-transform-str/branches)
-![Crates.io - License](https://img.shields.io/crates/l/lazy-transform-str/0.0.2)
+![Crates.io - License](https://img.shields.io/crates/l/lazy-transform-str/0.0.3)
 
 [![GitHub](https://img.shields.io/static/v1?logo=GitHub&label=&message=%20&color=grey)](https://github.com/Tamschi/lazy-transform-str)
 [![open issues](https://img.shields.io/github/issues-raw/Tamschi/lazy-transform-str)](https://github.com/Tamschi/lazy-transform-str/issues)
@@ -28,25 +28,25 @@ cargo add lazy-transform-str
 ## Example
 
 ```rust
-//! use {
-//!     cervine::Cow,
-//!     gnaw::Unshift as _,
-//!     lazy_transform_str::{Transform as _, TransformedPart},
-//!     smartstring::alias::String,
-//! };
-//!
-//! fn double_a(str: &str) -> Cow<String, str> {
-//!     str.transform(|rest /*: &mut &str */| {
-//!         // Consume some of the input. `rest` is never empty here.
-//!         match rest.unshift().unwrap() {
-//!             'a' => TransformedPart::Changed(String::from("aa")),
-//!             _ => TransformedPart::Unchanged,
-//!         }
-//!     } /*: impl FnMut(…) -> … */ )
-//! }
-//!
-//! assert_eq!(double_a("abc"), Cow::Owned(String::from("aabc")));
-//! assert_eq!(double_a("bcd"), Cow::Borrowed("bcd"));
+use {
+    cervine::Cow,
+    gnaw::Unshift as _,
+    lazy_transform_str::{Transform as _, TransformedPart},
+    smartstring::alias::String,
+};
+
+fn double_a(str: &str) -> Cow<String, str> {
+    str.transform(|rest /*: &mut &str */| {
+        // Consume some of the input. `rest` is never empty here.
+        match rest.unshift().unwrap() {
+            'a' => TransformedPart::Changed(String::from("aa")),
+            _ => TransformedPart::Unchanged,
+        }
+    } /*: impl FnMut(…) -> … */ )
+}
+
+assert_eq!(double_a("abc"), Cow::Owned(String::from("aabc")));
+assert_eq!(double_a("bcd"), Cow::Borrowed("bcd"));
 ```
 
 ## License
