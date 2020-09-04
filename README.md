@@ -5,7 +5,7 @@
 [![Docs.rs](https://img.shields.io/badge/Docs.rs-*-black)](https://docs.rs/crates/lazy-transform-str)
 
 ![Rust 1.46.0](https://img.shields.io/static/v1?logo=Rust&label=&message=1.46.0&color=grey)
-[![Build Status](https://travis-ci.com/Tamschi/lazy-transform-str.svg?branch=develop)](https://travis-ci.com/Tamschi/lazy-transform-str/branches)
+[![Build Status](https://travis-ci.com/Tamschi/lazy-transform-str.svg?branch=unstable)](https://travis-ci.com/Tamschi/lazy-transform-str/branches)
 ![Crates.io - License](https://img.shields.io/crates/l/lazy-transform-str/0.0.2)
 
 [![GitHub](https://img.shields.io/static/v1?logo=GitHub&label=&message=%20&color=grey)](https://github.com/Tamschi/lazy-transform-str)
