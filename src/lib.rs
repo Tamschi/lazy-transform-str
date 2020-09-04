@@ -31,16 +31,53 @@
 //! See [`escape_double_quotes`] and [`unescape_backlashed_verbatim`]'s sources for more real-world examples.
 
 #![warn(clippy::pedantic)]
+#![doc(html_root_url = "https://docs.rs/lazy-transform-str/0.0.2")]
+
+#[cfg(doctest)]
+pub mod readme {
+	doc_comment::doctest!("../README.md");
+}
 
 use cervine::Cow;
 use gnaw::Unshift as _;
 use smartstring::alias::String;
 
+/// Inidicates whether the consumed part of the input remains unchanged or is to be replaced.
 pub enum TransformedPart {
 	Unchanged,
 	Changed(String),
 }
 
+/// Transforms the given `str` according to `transform_next` as lazily as possible.
+///
+/// With each invocation, `transform_next` should consume part of the input (by slicing its parameter in place) and return a replacement [`String`] if necessary.
+/// `transform` returns once the input is an empty [`str`].
+///
+/// [`String`]: https://doc.rust-lang.org/stable/std/string/struct.String.html
+/// [`str`]: https://doc.rust-lang.org/stable/std/primitive.str.html
+///
+/// # Example
+///
+/// ```rust
+/// use cervine::Cow;
+/// use gnaw::Unshift as _;
+/// use lazy_transform_str::{transform, TransformedPart};
+/// use smartstring::alias::String;
+///
+/// let input = r#"a "quoted" word"#;
+///
+/// // Escape double quotes
+/// let output = transform(input, |rest| match rest.unshift().unwrap() {
+///     c @ '\\' | c @ '"' => {
+///         let mut changed = String::from(r"\");
+///         changed.push(c);
+///         TransformedPart::Changed(changed)
+///     }
+///     _ => TransformedPart::Unchanged,
+/// });
+///
+/// assert_eq!(output, Cow::Owned(r#"a \"quoted\" word"#.into()));
+/// ```
 pub fn transform(
 	str: &str,
 	transform_next: impl FnMut(/* rest: */ &mut &str) -> TransformedPart,
@@ -48,6 +85,33 @@ pub fn transform(
 	str.transform(transform_next)
 }
 
+/// Helper trait to call [`transform`] as method on [`&str`].
+///
+/// [`transform`]: ./fn.transform.html
+/// [`&str`]: https://doc.rust-lang.org/stable/std/primitive.str.html
+///
+/// # Example
+///
+/// ```rust
+/// use cervine::Cow;
+/// use gnaw::Unshift as _;
+/// use lazy_transform_str::{Transform as _, TransformedPart};
+/// use smartstring::alias::String;
+///
+/// let input = r#"a "quoted" word"#;
+///
+/// // Escape double quotes
+/// let output = input.transform(|rest| match rest.unshift().unwrap() {
+///     c @ '\\' | c @ '"' => {
+///         let mut changed = String::from(r"\");
+///         changed.push(c);
+///         TransformedPart::Changed(changed)
+///     }
+///     _ => TransformedPart::Unchanged,
+/// });
+///
+/// assert_eq!(output, Cow::Owned(r#"a \"quoted\" word"#.into()));
+/// ```
 pub trait Transform {
 	fn transform(
 		&self,
@@ -87,6 +151,20 @@ impl Transform for str {
 	}
 }
 
+/// Replaces `\` and `"` in `string` with (repectively) `\\` and `\"`, as lazily as possible.
+///
+/// # Example
+///
+/// ```rust
+/// use cervine::Cow;
+/// use lazy_transform_str::escape_double_quotes;
+///
+/// let input = r#"a "quoted" word"#;
+///
+/// let output = escape_double_quotes(input);
+///
+/// assert_eq!(output, Cow::Owned(r#"a \"quoted\" word"#.into()));
+/// ```
 #[must_use = "pure function"]
 pub fn escape_double_quotes(string: &str) -> Cow<String, str> {
 	string.transform(|rest| match rest.unshift().unwrap() {
@@ -99,6 +177,27 @@ pub fn escape_double_quotes(string: &str) -> Cow<String, str> {
 	})
 }
 
+/// Replaces `\` followed by any Unicode [`char`] in `string` with that [`char`], as lazily as possible.  
+/// If `\\` is found, this sequence is consumed at once and a single `\` remains in the output.
+///
+/// [`char`]: https://doc.rust-lang.org/stable/std/primitive.char.html
+///
+/// # Example
+///
+/// ```rust
+/// use cervine::Cow;
+/// use lazy_transform_str::unescape_backslashed_verbatim;
+///
+/// let input = r#"A \"quoted\" word\\!"#;
+///
+/// let output = unescape_backslashed_verbatim(input);
+///
+/// assert_eq!(output, Cow::Owned(r#"A "quoted" word\!"#.into()));
+///
+/// let output = unescape_backslashed_verbatim(&output);
+///
+/// assert_eq!(output, Cow::Owned(r#"A "quoted" word!"#.into()));
+/// ```
 #[must_use = "pure function"]
 pub fn unescape_backslashed_verbatim(string: &str) -> Cow<String, str> {
 	let mut escaped = false;

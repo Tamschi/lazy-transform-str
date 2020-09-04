@@ -1,14 +1,21 @@
 [package]
 name = "lazy-transform-str"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Tamme Schichler <tamme@schichler.dev>"]
 edition = "2018"
 description = "Lazy-copying lazy-allocated scanning `str` transformations.\nThis is good e.g. for (un)escaping text, especially if individual strings are short."
-license = "MPL-2.0"
+license = "MIT OR Apache-2.0"
 repository = "https://github.com/Tamschi/lazy-transform-str"
+keywords = ["str", "lazy", "escape", "replace"]
+categories = ["algorithms", "text-processing"]
+readme = "README.md"
 include = [
 	"**/*.rs",
+	"!tests/meta_*.rs", # Tests of meta data files not included in the package.
 	"Cargo.toml",
+	"LICENSE-*",
+	"CHANGELOG.md",
+	"README.md",
 ]
 publish = false
 
@@ -16,3 +23,9 @@ publish = false
 cervine = "0.0.2"
 smartstring = "0.2.3"
 gnaw = "0.0.1"
+
+[dev-dependencies]
+cargo-husky = "1.5.0"
+doc-comment = "0.3.3"
+git_info = "0.1.2"
+version-sync = "0.9.1"
