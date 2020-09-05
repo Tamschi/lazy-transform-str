@@ -2,7 +2,7 @@
 
 [![Lib.rs](https://img.shields.io/badge/Lib.rs-*-84f)](https://lib.rs/crates/lazy-transform-str)
 [![Crates.io](https://img.shields.io/crates/v/lazy-transform-str)](https://crates.io/crates/lazy-transform-str)
-[![Docs.rs](https://img.shields.io/badge/Docs.rs-*-black)](https://docs.rs/crates/lazy-transform-str)
+[![Docs.rs](https://docs.rs/lazy-transform-str/badge.svg)](https://docs.rs/crates/lazy-transform-str)
 
 ![Rust 1.42.0](https://img.shields.io/static/v1?logo=Rust&label=&message=1.42.0&color=grey)
 [![Build Status](https://travis-ci.com/Tamschi/lazy-transform-str.svg?branch=develop)](https://travis-ci.com/Tamschi/lazy-transform-str/branches)
