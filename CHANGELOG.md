@@ -1,5 +1,11 @@
 # lazy-transform-str Changelog
 
+## next
+
+TODO: date
+
+Dropped minimum supported Rust version to 1.42.0
+
 ## 0.0.3
 
 2020-09-04
