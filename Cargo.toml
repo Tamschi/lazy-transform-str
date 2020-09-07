@@ -20,7 +20,7 @@ include = [
 publish = false
 
 [dependencies]
-cervine = "0.0.2"
+cervine = "0.0.4"
 smartstring = "0.2.3"
 gnaw = "0.0.1"
 
