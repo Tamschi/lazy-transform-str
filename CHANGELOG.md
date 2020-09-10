@@ -6,6 +6,7 @@ TODO: date
 
 * Dropped minimum supported Rust version to 1.42.0
 * Use official Docs.rs badge
+* Added more meta data
 
 ## 0.0.3
 
