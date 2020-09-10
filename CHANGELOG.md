@@ -1,5 +1,9 @@
 # lazy-transform-str Changelog
 
+## next
+
+* Test now ensures html_root_url is present
+
 ## 0.0.4
 
 2020-09-10
