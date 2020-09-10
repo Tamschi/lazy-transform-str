@@ -1,11 +1,13 @@
 [package]
 name = "lazy-transform-str"
-version = "0.0.3"
+version = "0.0.4"
 authors = ["Tamme Schichler <tamme@schichler.dev>"]
 edition = "2018"
 description = "Lazy-copying lazy-allocated scanning `str` transformations.\nThis is good e.g. for (un)escaping text, especially if individual strings are short."
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Tamschi/lazy-transform-str"
+homepage = "https://github.com/Tamschi/lazy-transform-str/tree/v0.0.4"
+documentation = "https://docs.rs/lazy-transform-str/0.0.4"
 keywords = ["str", "lazy", "escape", "replace"]
 categories = ["algorithms", "text-processing"]
 readme = "README.md"
@@ -13,13 +15,20 @@ include = [
 	"**/*.rs",
 	"!tests/meta_*.rs", # Tests of meta data files not included in the package.
 	"Cargo.toml",
-	"LICENSE-*",
 	"CHANGELOG.md",
+	"CODE_OF_CONDUCT.md",
+	"LICENSE-*",
 	"README.md",
 ]
 
+[badges]
+travis-ci = { repository = "Tamschi/lazy-transform-str", branch = "unstable" }
+is-it-maintained-issue-resolution = { repository = "Tamschi/lazy-transform-str" }
+is-it-maintained-open-issues = { repository = "Tamschi/lazy-transform-str" }
+maintenance = { status = "experimental" }
+
 [dependencies]
-cervine = "0.0.2"
+cervine = "0.0.4"
 smartstring = "0.2.3"
 gnaw = "0.0.1"
 

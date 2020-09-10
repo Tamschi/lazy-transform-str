@@ -2,11 +2,11 @@
 
 [![Lib.rs](https://img.shields.io/badge/Lib.rs-*-84f)](https://lib.rs/crates/lazy-transform-str)
 [![Crates.io](https://img.shields.io/crates/v/lazy-transform-str)](https://crates.io/crates/lazy-transform-str)
-[![Docs.rs](https://img.shields.io/badge/Docs.rs-*-black)](https://docs.rs/crates/lazy-transform-str)
+[![Docs.rs](https://docs.rs/lazy-transform-str/badge.svg)](https://docs.rs/crates/lazy-transform-str)
 
-![Rust 1.46.0](https://img.shields.io/static/v1?logo=Rust&label=&message=1.46.0&color=grey)
+![Rust 1.42.0](https://img.shields.io/static/v1?logo=Rust&label=&message=1.42.0&color=grey)
 [![Build Status](https://travis-ci.com/Tamschi/lazy-transform-str.svg?branch=unstable)](https://travis-ci.com/Tamschi/lazy-transform-str/branches)
-![Crates.io - License](https://img.shields.io/crates/l/lazy-transform-str/0.0.3)
+![Crates.io - License](https://img.shields.io/crates/l/lazy-transform-str/0.0.4)
 
 [![GitHub](https://img.shields.io/static/v1?logo=GitHub&label=&message=%20&color=grey)](https://github.com/Tamschi/lazy-transform-str)
 [![open issues](https://img.shields.io/github/issues-raw/Tamschi/lazy-transform-str)](https://github.com/Tamschi/lazy-transform-str/issues)
@@ -80,6 +80,6 @@ Consider it the global feature level.
 Consider it the global patch level.
 
 This includes the Rust version requirement specified above.  
-Earlier versions may be compatible, but this can change with minor or patch releases.
+Earlier Rust versions may be compatible, but this can change with minor or patch releases.
 
 Which versions are affected by features and patches can be determined from the respective headings in [CHANGELOG.md](CHANGELOG.md).
