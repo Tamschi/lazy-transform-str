@@ -1,8 +1,8 @@
 # lazy-transform-str Changelog
 
-## next
+## 0.0.4
 
-TODO: date
+2020-09-10
 
 * Dropped minimum supported Rust version to 1.42.0
 * Use official Docs.rs badge

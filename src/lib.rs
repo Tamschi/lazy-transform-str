@@ -31,7 +31,7 @@
 //! See [`escape_double_quotes`] and [`unescape_backlashed_verbatim`]'s sources for more real-world examples.
 
 #![warn(clippy::pedantic)]
-#![doc(html_root_url = "https://docs.rs/lazy-transform-str/0.0.3")]
+#![doc(html_root_url = "https://docs.rs/lazy-transform-str/0.0.4")]
 
 #[cfg(doctest)]
 pub mod readme {
