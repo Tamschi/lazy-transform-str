@@ -1,5 +1,10 @@
 # lazy-transform-str Changelog
 
+## 0.0.5
+
+* Test now ensures html_root_url is present
+* Updated cervine from 0.0.4 to 0.0.5
+
 ## 0.0.4
 
 2020-09-10
