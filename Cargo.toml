@@ -31,7 +31,7 @@ maintenance = { status = "experimental" }
 [dependencies]
 cervine = "0.0.4"
 smartstring = "0.2.3"
-gnaw = "0.0.1"
+gnaw = "0.0.2"
 
 [dev-dependencies]
 cargo-husky = "1.5.0"
