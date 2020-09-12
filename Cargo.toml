@@ -29,8 +29,8 @@ is-it-maintained-open-issues = { repository = "Tamschi/lazy-transform-str" }
 maintenance = { status = "experimental" }
 
 [dependencies]
-cervine = "0.0.5"
-smartstring = "0.2.3"
+cervine = "0.0.5" # public
+smartstring = "0.2.3" # public
 gnaw = "0.0.2"
 
 [dev-dependencies]
