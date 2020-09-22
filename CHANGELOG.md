@@ -3,6 +3,7 @@
 ## next
 
 * Updated cervine from 0.0.5 to 0.0.6
+* Updated contribution guidelines
 
 ## 0.0.5
 
