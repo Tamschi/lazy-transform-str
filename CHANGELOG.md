@@ -1,5 +1,7 @@
 # lazy-transform-str Changelog
 
+<!-- markdownlint-disable no-trailing-punctuation -->
+
 ## 0.0.6
 
 * Updated cervine from 0.0.5 to 0.0.6
