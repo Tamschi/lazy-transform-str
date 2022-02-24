@@ -29,7 +29,7 @@ maintenance = { status = "experimental" }
 
 [dependencies]
 cervine = "0.0.6" # public
-smartstring = "0.2.3" # public
+smartstring = "1.0.0" # public
 gnaw = "0.0.2"
 
 [dev-dependencies]
